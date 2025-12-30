@@ -20,6 +20,7 @@ class Config:
     # Model settings
     EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
     LLM_MODEL = "gpt-3.5-turbo"
+    # LLM_MODEL = "llama-3.1-8b-instant"
     
     # API key
     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")

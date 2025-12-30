@@ -34,7 +34,8 @@ class RAGIndexer:
             api_key=Config.OPENAI_API_KEY,
             temperature=Config.LLM_TEMPERATURE
         )
-        
+
+
         self.index = None
         logger.info("✓ RAG Indexer initialized successfully")
     

@@ -66,6 +66,7 @@ cp .env.example .env
 ```
 
 Your `.env` file should look like:
+
 ```
 OPENAI_API_KEY=sk-your-actual-api-key-here
 ```
@@ -93,6 +94,7 @@ python qa.py --question "How do I reset my password?"
 ```
 
 On first run, the system will:
+
 - Load all documents from `./docs/`
 - Chunk them into manageable pieces
 - Generate embeddings
@@ -115,6 +117,7 @@ python qa.py --question "How to authenticate?" --verbose
 ```
 
 This will show:
+
 - Retrieved passage snippets
 - Relevance scores
 - Source file names
@@ -132,6 +135,7 @@ python qa.py --rebuild
 ```
 
 Then run your query:
+
 ```bash
 python qa.py --question "Your question here"
 ```
@@ -199,6 +203,7 @@ LLM_TEMPERATURE = 0.1         # Lower = more focused answers
 ### Using Different LLM Models
 
 In `config.py`, change:
+
 ```python
 LLM_MODEL = "gpt-4"  # More capable but slower and more expensive
 ```
@@ -206,11 +211,13 @@ LLM_MODEL = "gpt-4"  # More capable but slower and more expensive
 ### Adjusting Retrieval
 
 For more context (may be slower):
+
 ```python
 TOP_K = 5  # Retrieve top 5 chunks instead of 3
 ```
 
 For larger chunks:
+
 ```python
 CHUNK_SIZE = 1024  # Larger chunks, fewer total chunks
 ```
@@ -218,6 +225,7 @@ CHUNK_SIZE = 1024  # Larger chunks, fewer total chunks
 ### Debug Mode
 
 Enable detailed logging:
+
 ```bash
 # In config.py or environment
 export LOG_LEVEL=DEBUG
@@ -250,6 +258,7 @@ pip install -r requirements.txt
 ### "OPENAI_API_KEY not found"
 
 Make sure your `.env` file exists and contains:
+
 ```
 OPENAI_API_KEY=sk-your-key-here
 ```
@@ -264,6 +273,7 @@ mkdir docs
 ### Slow First Query
 
 This is normal! The first query needs to:
+
 - Load all documents
 - Generate embeddings (2-5 minutes for 10-15 files)
 - Build and save the index
@@ -273,6 +283,7 @@ Subsequent queries will be much faster (1-3 seconds).
 ### Index Not Updating After Adding New Documents
 
 Rebuild the index:
+
 ```bash
 python qa.py --rebuild
 python qa.py -q "Your question"
@@ -281,11 +292,13 @@ python qa.py -q "Your question"
 ## 📊 Performance
 
 **First Run (Building Index):**
+
 - 10-15 documents: ~3-5 minutes
 - Generates embeddings for all chunks
 - Saves index for future use
 
 **Subsequent Queries:**
+
 - Average: 1-3 seconds
 - Loads existing index (fast)
 - Only generates answer, no re-indexing
@@ -312,18 +325,21 @@ python qa.py -q "Your question"
 ## 🎯 Design Decisions
 
 **Why LlamaIndex?**
+
 - Purpose-built for RAG applications
 - Simpler than LangChain for this use case
 - Excellent documentation and abstractions
 - Built-in query engine handles retrieval + generation
 
 **Why sentence-transformers embeddings?**
+
 - Fast inference
 - Good semantic understanding
 - No API costs (runs locally)
 - Proven performance for retrieval tasks
 
 **Why ChromaDB?**
+
 - Lightweight (no external dependencies)
 - Fast for small to medium datasets
 - Easy to persist and reload
@@ -332,6 +348,7 @@ python qa.py -q "Your question"
 ## 🚀 Future Enhancements
 
 Potential improvements:
+
 - [ ] Add support for PDF documents
 - [ ] Implement hybrid search (semantic + keyword)
 - [ ] Add conversation history
@@ -361,5 +378,3 @@ Feel free to submit issues or pull requests for improvements.
 For questions or support, please contact [your-email@example.com]
 
 ---
-
-**Built with ❤️ using LlamaIndex and OpenAI**
